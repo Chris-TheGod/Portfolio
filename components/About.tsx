@@ -7,7 +7,9 @@ import { useActiveSectionContext } from '@/context/active-section-context';
 import { useEffect } from 'react';
 
 export default function About() {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({
+    threshold: 0.75,
+  });
   const { setActiveSection } = useActiveSectionContext();
 
   useEffect(() => {

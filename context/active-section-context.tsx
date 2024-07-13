@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { links } from '@/lib/data';
 
 type SectionName = (typeof links)[number]['name'];
@@ -31,4 +31,16 @@ export default function ActiveSectionContextProvider({
       {children}
     </ActiveSectionContext.Provider>
   );
+}
+
+export function useActiveSectionContext() {
+  const context = useContext(ActiveSectionContext);
+
+  if (context === null) {
+    throw new Error(
+      'useActiveSectionContext must be used within an ActiveSectionContextProvider'
+    );
+  }
+
+  return context;
 }
